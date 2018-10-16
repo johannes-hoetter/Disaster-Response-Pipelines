@@ -15,7 +15,7 @@ from nltk.stem.porter import PorterStemmer
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.model_selection import train_test_split
@@ -51,10 +51,11 @@ class SpecialCharacterCounter(BaseEstimator, TransformerMixin):
         return np.array([len(re.sub('[ a-zA-Z0-9]', '', x)) for x in X]).reshape(-1, 1)
 
 
-def load_data(database_filepath):
+def load_data(database_filepath, table_name='Messages'):
     '''
-
+    Load the Data for Machine Learning from a sqlite Database.
     :param database_filepath:
+    :param table_name:
     :return:
     - X:
     - y:
@@ -65,7 +66,7 @@ def load_data(database_filepath):
     # in this case, go back one step and then drill down to the file
     engine = create_engine('sqlite:///' + database_filepath)
 
-    df = pd.read_sql_table('Messages', con=engine)
+    df = pd.read_sql_table(table_name, con=engine)
     X = df['message'].values
     y = df.drop(['id', 'message', 'original', 'genre'], axis=1)
     category_names = y.columns.values
@@ -119,19 +120,23 @@ def build_model(X_train, y_train):
             ('special_char', SpecialCharacterCounter())
         ])),
         ('scaler', StandardScaler(with_mean=False)), #ML Algorithms often work better with Standardization
-        ('clf', MultiOutputClassifier(AdaBoostClassifier(n_estimators=50, learning_rate=0.5)))
+        ('clf', MultiOutputClassifier(RandomForestClassifier(n_estimators=100, criterion='gini')))
     ])
     pipeline.fit(X_train, y_train)
     return pipeline
 
-def display_results(category_names, y_test, y_pred):
+
+def evaluate_model(model, category_names, X_test, y_test):
     '''
 
+    :param model:
     :param category_names:
+    :param X_test:
     :param y_test:
-    :param y_pred:
-    :return:
+    :return: -
     '''
+
+    y_pred = model.predict(X_test)
     for i, cat in enumerate(category_names):
         metrics =  classification_report(y_test[i], y_pred[i])
         print("""Category: {}
@@ -146,7 +151,7 @@ def save_model(model, folder='classifiers/', filename=''):
     :param model:
     :param folder:
     :param filename:
-    :return:
+    :return: -
     '''
 
     # Input Handling
@@ -168,8 +173,8 @@ def save_model(model, folder='classifiers/', filename=''):
 
 def main():
     '''
-
-    :return:
+    Runs the script if the file is called directly
+    :return: -
     '''
     if len(sys.argv) == 3:
         database_filepath, model_folder = sys.argv[1:]
@@ -184,9 +189,9 @@ def main():
         model.fit(X_train, Y_train)
         
         print('Evaluating model...')
-        display_results(category_names, X_test, Y_test)
+        evaluate_model(model, category_names, X_test, Y_test)
 
-        print('Saving model...\n    MODEL: {}'.format(model_folder + 'AdaBoostClassifier.pkl'))
+        print('Saving model...\n    MODEL: {}'.format(model_folder + 'RandomForestClassifier.pkl'))
         save_model(model, model_folder)
 
         print('Trained model saved!')

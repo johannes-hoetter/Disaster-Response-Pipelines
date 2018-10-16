@@ -64,16 +64,17 @@ def clean_data(df):
     return df
 
 
-def save_data(df, database_filename):
+def save_data(df, database_filename, table_name='Messages'):
     '''
     L-Part of the ETL-Process (Load):
     Saves the given pandas DataFrame in a sqlite DataBase.
     :param df:
     :param database_filename:
+    :param table_name:
     :return: -
     '''
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql('Messages', engine, index=False, if_exists='replace')
+    df.to_sql(table_name, engine, index=False, if_exists='replace')
 
 
 def main():
