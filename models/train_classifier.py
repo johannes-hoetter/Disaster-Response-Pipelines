@@ -30,7 +30,7 @@ import sys
 
 class MessageLengthTransformer(BaseEstimator, TransformerMixin):
     """
-    Calculates the length of a single message
+    Calculates the length of a single message.
     """
     def fit(self, X, y=None):
         return self
@@ -41,7 +41,7 @@ class MessageLengthTransformer(BaseEstimator, TransformerMixin):
 
 class SpecialCharacterCounter(BaseEstimator, TransformerMixin):
     """
-    Counts any special Character in a message
+    Counts any special Character in a message.
     Idea: maybe desperate or urgent messages contain more of those (e.g. exclamation marks etc.)
     """
     def fit(self, X, y=None):
@@ -54,12 +54,12 @@ class SpecialCharacterCounter(BaseEstimator, TransformerMixin):
 def load_data(database_filepath, table_name='Messages'):
     '''
     Load the Data for Machine Learning from a sqlite Database.
-    :param database_filepath:
-    :param table_name:
+    :param database_filepath: Path to the sqlite Database
+    :param table_name: name of the table containing the data
     :return:
-    - X:
-    - y:
-    - category_names:
+    - X: Data for the ML Model (Input Variables)
+    - y: Data for the ML Model (Labels / Output Variables)
+    - category_names: Names of the Categories which the Table contains
     '''
 
     # sqlite:/// is necessary, followed by path where the DB exists.
@@ -76,10 +76,11 @@ def load_data(database_filepath, table_name='Messages'):
 
 def tokenize(text, lang="english"):
     '''
-
-    :param text:
-    :param lang:
-    :return:
+    Prepares a String to be processed by a CountVectorizer for ML-Algorithms.
+    Uses: Normalization, Tokenization, Stop Words Removal, Stemming and Lemmatization.
+    :param text: input text which isn't processed yet
+    :param lang: language of the text file (needed for Stop Words Removal)
+    :return: processed text as a list
     '''
 
     # Normalize (Transform to lowercase and remove any punctuation)
@@ -104,10 +105,13 @@ def tokenize(text, lang="english"):
 
 def build_model(X_train, y_train):
     '''
-
-    :param X_train:
-    :param y_train:
-    :return:
+    Builds a ML Pipeline containing a classification estimator.
+    The specific parameters for the given estimator (RandomForestClassifier) have
+    been calculated by a GridSearchCV during development (see seperate file "ML Pipeline Preparation.ipynb".
+    The Pipeline gets fit on the given Training Data.
+    :param X_train: Training Data for the ML Model (Input Variables)
+    :param y_train: Training Data for the ML Model (Labels / Output Variables)
+    :return: fitted pipeline
     '''
 
     pipeline = Pipeline([
@@ -128,11 +132,12 @@ def build_model(X_train, y_train):
 
 def evaluate_model(model, category_names, X_test, y_test):
     '''
-
-    :param model:
-    :param category_names:
-    :param X_test:
-    :param y_test:
+    Calculates Precision, Recall, F1-Score and Support of the Prediction Results for each possible
+    Category.
+    :param model: Model used for prediction
+    :param category_names: contains the different possible Categories
+    :param X_test: Testing Data for the ML Model (Input Variables)
+    :param y_test: Testing Data for the ML Model (Labels / Output Variables)
     :return: -
     '''
 
@@ -147,10 +152,10 @@ def evaluate_model(model, category_names, X_test, y_test):
 
 def save_model(model, folder='classifiers/', filename=''):
     '''
-
-    :param model:
-    :param folder:
-    :param filename:
+    Saves the model as a pickle file.
+    :param model: Model to be saved
+    :param folder: Directory where the model gets saved
+    :param filename: Filename of the new pickle file
     :return: -
     '''
 
@@ -173,7 +178,7 @@ def save_model(model, folder='classifiers/', filename=''):
 
 def main():
     '''
-    Runs the script if the file is called directly
+    Runs the script if the file is called directly.
     :return: -
     '''
     if len(sys.argv) == 3:

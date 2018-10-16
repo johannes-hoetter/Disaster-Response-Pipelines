@@ -32,14 +32,14 @@ def clean_data(df):
     # 0	    2	related-1;request-0;offer-0;aid_related-0; ...
     # 1	    7	related-1;request-0;offer-0;aid_related-1; ...
     # ..    ..  ..
-    # To clean the data, the following steps will be executed
+    # To clean the data, the following steps will be executed.
     # 1.) split the values in the categories column on the ; character so that each value becomes a separate column.
     # 2.) the first row of this df can then be used to rename the columns.
-    #     it's important to skip the two last characters, as they hold the value of the column
+    #     it's important to skip the two last characters, as they hold the value of the column.
     # 3.) for each column, take the last character of the value and cast it to int
-    #     e.g. 'related-1' gets transformed to 1 (int)
-    # 4.) remove the old categories from the original df and replace them with the new, cleaned categories
-    # 5.) drop duplicates
+    #     e.g. 'related-1' gets transformed to 1 (int).
+    # 4.) remove the old categories from the original df and replace them with the new, cleaned categories.
+    # 5.) drop duplicates.
     # ------------------------------------------------------------------------------------------------------------------
     # 1.)
     categories = df['categories'].str.split(';', expand=True)
@@ -67,7 +67,7 @@ def clean_data(df):
 def save_data(df, database_filename, table_name='Messages'):
     '''
     L-Part of the ETL-Process (Load):
-    Saves the given pandas DataFrame in a sqlite DataBase.
+    Saves the given pandas DataFrame in a sqlite Database.
     :param df:
     :param database_filename:
     :param table_name:
@@ -79,7 +79,7 @@ def save_data(df, database_filename, table_name='Messages'):
 
 def main():
     '''
-    Runs the script if the file is called directly
+    Runs the script if the file is called directly.
     :return:  -
     '''
 
