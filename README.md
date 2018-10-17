@@ -41,7 +41,7 @@ The data has been provided by FigureEight.
     |- __pycache__: not important, automatically generated
     |- ML Pipeline Preparation.ipynb: Jupyter Notebook containing the development of train_classifier.py
     |- custom_estimators.py: Script containing Custom Scikit-Learn Estimators
-    |- train_classifier.ipynb: ML Script, builds a model for Classification of Text Messages
+    |- train_classifier.ipynb: ML Script, builds a model for Classification of Text Messages  
 
 ### Note
 The work on this project will be continued - by now, the deadline for the project submission has arrived and I'm going
