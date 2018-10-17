@@ -36,7 +36,7 @@ The data has been provided by FigureEight.
 &nbsp;&nbsp;&nbsp;&nbsp;|- ETL Pipeline Preparation.ipynb: Jupyter Notebook containing the development of process_data.py<br>
 &nbsp;&nbsp;&nbsp;&nbsp;|- categories.csv: File containing the different categories for each text message of the train/test data<br>
 &nbsp;&nbsp;&nbsp;&nbsp;|- messages.csv: File containing the different texts and genres for each text message of the train/test data<br>
-&nbsp;&nbsp;&nbsp;&nbsp;|- process_data.py: ETL Script, loads data from categories.csv and messages.csv, cleans and merges the data and loads it into a db<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- process_data.py: ETL Script, loads data from files, cleans and merges the data and loads it into a db<br>
 |- models<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- .ipynb_checkpoints: not important, automatically generated<br>
 &nbsp;&nbsp;&nbsp;&nbsp;|- __pycache__: not important, automatically generated<br>
