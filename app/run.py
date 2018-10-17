@@ -45,12 +45,16 @@ model = joblib.load("../models/RandomForestClassifier.pkl")
 @app.route('/index')
 def index():
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
+    category_labels = list(df.columns[4:])
+    ratios = (df[category_labels].sum() / len(df)).values
+    label_ratio_pairs = [(label, ratio) for label, ratio in zip(category_labels, ratios)]
+    label_ratio_pairs.sort(key=lambda x: x[1], reverse=True)
+    category_labels, ratios = zip(*label_ratio_pairs)
+
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
@@ -67,6 +71,24 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=category_labels,
+                    y=ratios
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Relative Count (%)"
+                },
+                'xaxis': {
+                    'title': "Category"
                 }
             }
         }
