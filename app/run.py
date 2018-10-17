@@ -1,5 +1,8 @@
 import json
-
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 import pandas as pd
 import plotly
 from flask import Flask
@@ -17,7 +20,6 @@ from models.custom_estimators import MessageLengthTransformer, SpecialCharacterC
 app = Flask(__name__)
 
 
-'''
 def tokenize(text):
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
@@ -94,13 +96,7 @@ def go():
         query=query,
         classification_result=classification_results
     )
-'''
 
-# Debugging!
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('master.html')
 
 def main():
     app.run(host='0.0.0.0', port=3001, debug=True)
