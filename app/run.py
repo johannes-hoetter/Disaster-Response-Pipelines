@@ -1,19 +1,23 @@
 import json
-import plotly
-import pandas as pd
 
+import pandas as pd
+import plotly
+from flask import Flask
+from flask import render_template, request
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-
-from flask import Flask
-from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
+import sys
+sys.path.append('../') # makes models.custom_estimators visible to file
+from models.custom_estimators import MessageLengthTransformer, SpecialCharacterCounter
+
 app = Flask(__name__)
 
 
+'''
 def tokenize(text):
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
@@ -27,11 +31,11 @@ def tokenize(text):
 
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+engine = create_engine('sqlite:///../data/DisasterMessages.db')
+df = pd.read_sql_table('Messages', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+model = joblib.load("../models/RandomForestClassifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -90,7 +94,13 @@ def go():
         query=query,
         classification_result=classification_results
     )
+'''
 
+# Debugging!
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('master.html')
 
 def main():
     app.run(host='0.0.0.0', port=3001, debug=True)
