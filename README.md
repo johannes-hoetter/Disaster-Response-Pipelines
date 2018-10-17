@@ -28,7 +28,7 @@ app<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;master.html: main page (index file)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;run.py <br>
 data <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- .ipynb_checkpoints: not important, automatically generated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.ipynb_checkpoints: not important, automatically generated<br>
 &nbsp;&nbsp;&nbsp;&nbsp;pycache: not important, automatically generated<br>
 &nbsp;&nbsp;&nbsp;&nbsp;DisasterMessages.db: Database containing the data for the model; can be generated through process_data.py<br>
 &nbsp;&nbsp;&nbsp;&nbsp;ETL Pipeline Preparation.ipynb: Jupyter Notebook containing the development of process_data.py<br>
