@@ -42,6 +42,7 @@ model = joblib.load("../models/RandomForestClassifier.pkl")
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
+@app.route('/master')
 @app.route('/index')
 def index():
     # extract data needed for visuals
