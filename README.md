@@ -25,7 +25,7 @@ The data has been provided by FigureEight.
 |- .idea: not important, automatically generated
 |- .ipynb_checkpoints: not important, automatically generated
 |- app
-    |- templates
+&nbsp;&nbsp;&nbsp;&nbsp;|- templates
         |- go.html: html file to generate the classification results for a given text message
         |- master.html: main page (index file)
     |- run.py <br>
