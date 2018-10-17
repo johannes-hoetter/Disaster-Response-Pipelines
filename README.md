@@ -21,28 +21,28 @@ The data has been provided by FigureEight.
 
 ### File Descriptions
 <p>
-|
-|- .idea: not important, automatically generated
-|- .ipynb_checkpoints: not important, automatically generated
-|- app
-&nbsp;&nbsp;&nbsp;&nbsp;|- templates
-        |- go.html: html file to generate the classification results for a given text message
-        |- master.html: main page (index file)
-    |- run.py <br>
+|<br>
+|- .idea: not important, automatically generated<br>
+|- .ipynb_checkpoints: not important, automatically generated<br>
+|- app<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- templates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- go.html: html file to generate the classification results for a given text message<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- master.html: main page (index file)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- run.py <br>
 |- data <br>
-    |- .ipynb_checkpoints: not important, automatically generated
-    |- __pycache__: not important, automatically generated
-    |- DisasterMessages.db: Database containing the data for the model; can be generated through process_data.py
-    |- ETL Pipeline Preparation.ipynb: Jupyter Notebook containing the development of process_data.py
-    |- categories.csv: File containing the different categories for each text message of the train/test data
-    |- messages.csv: File containing the different texts and genres for each text message of the train/test data
-    |- process_data.py: ETL Script, loads data from categories.csv and messages.csv, cleans and merges the data and loads it into a db
-|- models
-    |- .ipynb_checkpoints: not important, automatically generated
-    |- __pycache__: not important, automatically generated
-    |- ML Pipeline Preparation.ipynb: Jupyter Notebook containing the development of train_classifier.py
-    |- custom_estimators.py: Script containing Custom Scikit-Learn Estimators
-    |- train_classifier.ipynb: ML Script, builds a model for Classification of Text Messages
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- .ipynb_checkpoints: not important, automatically generated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- __pycache__: not important, automatically generated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- DisasterMessages.db: Database containing the data for the model; can be generated through process_data.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- ETL Pipeline Preparation.ipynb: Jupyter Notebook containing the development of process_data.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- categories.csv: File containing the different categories for each text message of the train/test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- messages.csv: File containing the different texts and genres for each text message of the train/test data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- process_data.py: ETL Script, loads data from categories.csv and messages.csv, cleans and merges the data and loads it into a db<br>
+|- models<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- .ipynb_checkpoints: not important, automatically generated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- __pycache__: not important, automatically generated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- ML Pipeline Preparation.ipynb: Jupyter Notebook containing the development of train_classifier.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- custom_estimators.py: Script containing Custom Scikit-Learn Estimators<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|- train_classifier.ipynb: ML Script, builds a model for Classification of Text Messages<br>
 </p>
 
 ### Note
