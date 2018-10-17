@@ -20,7 +20,7 @@ The data has been provided by FigureEight.
 3. Go to localhost:3001/
 
 ### File Descriptions
-|
+| <br>
 &nbsp;&nbsp;&nbsp;&nbsp;|- .idea: not important, automatically generated<br>
 &nbsp;&nbsp;&nbsp;&nbsp;|- .ipynb_checkpoints: not important, automatically generated<br>
 &nbsp;&nbsp;&nbsp;&nbsp;|- app<br>
