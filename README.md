@@ -12,7 +12,7 @@ The data has been provided by FigureEight.
     - To run ETL pipeline that cleans data and stores in database
         `python data/process_data.py data/messages.csv data/categories.csv data/DisasterMessages.db`
     - To run ML pipeline that trains classifier and saves
-        `python models/train_classifier.py data/DisasterMessages.db RandomForestClassifier.pkl`
+        `python models/train_classifier.py data/DisasterMessages.db models/RandomForestClassifier.pkl`
 
 2. Run the following command in the app's directory to run the web app.
     `python run.py`

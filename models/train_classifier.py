@@ -26,7 +26,7 @@ import pickle
 import os
 import sys
 
-from models.custom_estimators import MessageLengthTransformer, SpecialCharacterCounter
+from custom_estimators import MessageLengthTransformer, SpecialCharacterCounter
 
 
 def load_data(database_filepath, table_name='Messages'):
@@ -81,14 +81,11 @@ def tokenize(text, lang="english"):
     return words
 
 
-def build_model(X_train, y_train):
+def build_model():
     '''
     Builds a ML Pipeline containing a classification estimator.
     The specific parameters for the given estimator (RandomForestClassifier) have
-    been calculated by a GridSearchCV during development (see seperate file "ML Pipeline Preparation.ipynb".
-    The Pipeline gets fit on the given Training Data.
-    :param X_train: Training Data for the ML Model (Input Variables)
-    :param y_train: Training Data for the ML Model (Labels / Output Variables)
+    been calculated by a GridSearchCV during development (see seperate file "ML Pipeline Preparation.ipynb").
     :return: fitted pipeline
     '''
 
@@ -104,7 +101,6 @@ def build_model(X_train, y_train):
         ('scaler', StandardScaler(with_mean=False)), #ML Algorithms often work better with Standardization
         ('clf', MultiOutputClassifier(RandomForestClassifier(n_estimators=100, criterion='gini')))
     ])
-    pipeline.fit(X_train, y_train)
     return pipeline
 
 
@@ -166,7 +162,7 @@ def main():
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
         
         print('Building model...')
-        model = build_model(X_train, Y_train)
+        model = build_model()
         
         print('Training model...')
         model.fit(X_train, Y_train)
